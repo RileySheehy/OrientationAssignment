@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor gyrosensor_;
     private Button startButton;
     private EditText orientationText;
+    private Double gyroAngle;
+    private Double accAngle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Float x = event.values[0];
             Float y = event.values[1];
             Float z = event.values[2];
-            Double angle = Math.atan2(y, x);
+            accAngle = Math.atan2(y, x);
 
         }
         else if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE)
@@ -60,8 +62,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Float y = event.values[1];
             Float z = event.values[2];
 
-
+            gyroAngle += gyroAngle + (z*0.2);
         }
+
+        Double totalAngle = (0.05 * gyroAngle) + (0.95 * accAngle);
+        orientationText.setText(totalAngle.toString());
     }
 
     @Override

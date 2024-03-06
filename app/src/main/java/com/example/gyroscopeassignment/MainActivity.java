@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         startButton = (Button) findViewById(R.id.button);
         orientationText = (EditText) findViewById(R.id.orientation);
 
+        gyroAngle = 0.0;
+        accAngle = 0.0;
+
         sensorManager_ = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor_ = sensorManager_.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         gyrosensor_ = sensorManager_.getDefaultSensor(Sensor.TYPE_GYROSCOPE);

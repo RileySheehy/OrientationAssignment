@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Float y = event.values[1];
             Float z = event.values[2];
 
+            Double zRad = z*(180/3.1415);
+
             gyroAngle += gyroAngle + (z*0.2);
         }
 
